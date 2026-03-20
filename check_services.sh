@@ -5,8 +5,9 @@ SERVICIOS=("nginx" "ssh")
 LOG_FILE="/var/log/servicios_report.log"
 
 # Verificación
-for servicio in "${SERVICIOS[@]}"; do
+for servicio in "${SERVICIOS[@]}"; do  # Recorre cada servicio
     echo "[INFO-$(date '+%Y-%m-%d %H:%M:%S')] Verificando servicio $servicio..." >> "$LOG_FILE"
+    
     ESTADO=$(systemctl is-active "$servicio")
     if [ "$ESTADO" == "active" ]; then
         echo "[INFO-$(date '+%Y-%m-%d %H:%M:%S')] El servicio $servicio está activo." >> "$LOG_FILE"
